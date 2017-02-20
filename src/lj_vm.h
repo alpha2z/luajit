@@ -13,7 +13,7 @@ LJ_ASMF void lj_vm_call(lua_State *L, TValue *base, int nres1);
 LJ_ASMF int lj_vm_pcall(lua_State *L, TValue *base, int nres1, ptrdiff_t ef);
 typedef TValue *(*lua_CPFunction)(lua_State *L, lua_CFunction func, void *ud);
 LJ_ASMF int lj_vm_cpcall(lua_State *L, lua_CFunction func, void *ud,
-			 lua_CPFunction cp);
+                         lua_CPFunction cp);
 LJ_ASMF int lj_vm_resume(lua_State *L, TValue *base, int nres1, ptrdiff_t ef);
 LJ_ASMF_NORET void LJ_FASTCALL lj_vm_unwind_c(void *cframe, int errcode);
 LJ_ASMF_NORET void LJ_FASTCALL lj_vm_unwind_ff(void *cframe);
@@ -51,8 +51,8 @@ LJ_ASMF void lj_vm_exit_interp(void);
 
 /* Internal math helper functions. */
 #if LJ_TARGET_PPC || LJ_TARGET_ARM64 || (LJ_TARGET_MIPS && LJ_ABI_SOFTFP)
-#define lj_vm_floor	floor
-#define lj_vm_ceil	ceil
+#define lj_vm_floor floor
+#define lj_vm_ceil  ceil
 #else
 LJ_ASMF double lj_vm_floor(double);
 LJ_ASMF double lj_vm_ceil(double);
@@ -64,7 +64,7 @@ LJ_ASMF double lj_vm_ceil_sf(double);
 #ifdef LUAJIT_NO_LOG2
 LJ_ASMF double lj_vm_log2(double);
 #else
-#define lj_vm_log2	log2
+#define lj_vm_log2  log2
 #endif
 
 #if LJ_HASJIT
@@ -73,12 +73,12 @@ LJ_ASMF void lj_vm_floor_sse(void);
 LJ_ASMF void lj_vm_ceil_sse(void);
 LJ_ASMF void lj_vm_trunc_sse(void);
 LJ_ASMF void lj_vm_powi_sse(void);
-#define lj_vm_powi	NULL
+#define lj_vm_powi  NULL
 #else
 LJ_ASMF double lj_vm_powi(double, int32_t);
 #endif
 #if LJ_TARGET_PPC || LJ_TARGET_ARM64
-#define lj_vm_trunc	trunc
+#define lj_vm_trunc trunc
 #else
 LJ_ASMF double lj_vm_trunc(double);
 #if LJ_TARGET_ARM
@@ -88,7 +88,7 @@ LJ_ASMF double lj_vm_trunc_sf(double);
 #ifdef LUAJIT_NO_EXP2
 LJ_ASMF double lj_vm_exp2(double);
 #else
-#define lj_vm_exp2	exp2
+#define lj_vm_exp2  exp2
 #endif
 LJ_ASMF int32_t LJ_FASTCALL lj_vm_modi(int32_t, int32_t);
 #if LJ_HASFFI
@@ -109,6 +109,6 @@ LJ_ASMF void lj_cont_stitch(void);  /* Trace stitching. */
 LJ_ASMF char lj_vm_asm_begin[];
 
 /* Bytecode offsets are relative to lj_vm_asm_begin. */
-#define makeasmfunc(ofs)	((ASMFunction)(lj_vm_asm_begin + (ofs)))
+#define makeasmfunc(ofs)    ((ASMFunction)(lj_vm_asm_begin + (ofs)))
 
 #endif
