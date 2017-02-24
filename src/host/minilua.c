@@ -7446,14 +7446,12 @@ static int panic(lua_State *L)
             lua_tostring(L, -1));
     return 0;
 }
-
 static lua_State *luaL_newstate(void)
 {
     lua_State *L = lua_newstate(l_alloc, NULL);
     if(L)lua_atpanic(L, &panic);
     return L;
 }
-
 static int luaB_tonumber(lua_State *L)
 {
     int base = luaL_optint(L, 2, 10);
@@ -7473,10 +7471,10 @@ static int luaB_tonumber(lua_State *L)
         unsigned long n;
         luaL_argcheck(L, 2 <= base && base <= 36, 2, "base out of range");
         n = strtoul(s1, &s2, base);
-        if (s1 != s2)
+        if(s1 != s2)
         {
             while(isspace((unsigned char)(*s2)))s2++;
-            if (*s2 == '\0')
+            if(*s2 == '\0')
             {
                 lua_pushnumber(L, (lua_Number)n);
                 return 1;
@@ -7486,7 +7484,6 @@ static int luaB_tonumber(lua_State *L)
     lua_pushnil(L);
     return 1;
 }
-
 static int luaB_error(lua_State *L)
 {
     int level = luaL_optint(L, 2, 1);
@@ -7717,13 +7714,11 @@ static void base_open(lua_State *L)
     lua_pushcclosure(L, luaB_newproxy, 1);
     lua_setglobal(L, "newproxy");
 }
-
 static int luaopen_base(lua_State *L)
 {
     base_open(L);
     return 1;
 }
-
 #define aux_getn(L,n)(luaL_checktype(L,n,5),luaL_getn(L,n))
 static int tinsert(lua_State *L)
 {
